@@ -37,6 +37,22 @@ public class LoginStepDefinitions {
         loginPage.login("user19","UserUser123");
     }
 
+    //When user enters "storemanager85" username and "UserUser123" password
+    @When("user enters {string} username and {string} password")
+    public void user_enters_username_and_password(String string, String string2) {
+        System.out.printf("Login with username %s and %s password\n", string, string2);
+        loginPage.login(string,string2);
+    }
+
+    @When("user navigates to {string} and {string}")
+    public void user_navigates_to_and(String tab, String module) {
+        System.out.printf("User clicks on the %s tab and navigates to %s module\n", tab, module);
+        loginPage.navigateTo(tab,module);
+
+
+
+    }
+
     @Then("user should verify that title is a Dashboard")
     public void user_should_verify_that_title_is_a_Dashboard() {
         System.out.println("Verify that title is a Dashboard");
@@ -44,5 +60,7 @@ public class LoginStepDefinitions {
         BrowserUtilities.wait(2);
         Assert.assertEquals("Dashboard",Driver.getDriver().getTitle());
     }
+
+
 
 }

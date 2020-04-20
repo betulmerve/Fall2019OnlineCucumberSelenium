@@ -10,8 +10,9 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         dryRun = false,
         strict = false,
-        tags = "",
-        plugin = "html:target/cucumber-html-report"
+        tags = "@create_calendar_event_2",
+        plugin = {"html:target/default-report",
+                  "json:target/cucumber.json"}
 
 )
 public class CucumberRunner {

@@ -33,8 +33,8 @@ public class VehiclesPage extends AbstractPageBase {
     private WebElement submit;
 
     public void clickToCreateACar(){
-        WebDriverWait wait=new WebDriverWait((WebDriver) driver,15);
         wait.until(ExpectedConditions.elementToBeClickable(createCar)).click();
+        waitForLoaderMask();
     }
 
 
@@ -51,6 +51,7 @@ public class VehiclesPage extends AbstractPageBase {
 
     public void setLocationInput(String location) {
         locationInput.sendKeys(location);
+        wait.until(ExpectedConditions.attributeToBe(locationInput,"value",location));
     }
 
     public void setModelYear(String year) {

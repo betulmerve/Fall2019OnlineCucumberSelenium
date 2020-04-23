@@ -40,7 +40,9 @@ public abstract class AbstractPageBase {
         return currentUser.getText().trim();
     }
     public void clickOnSaveAndClose(){
+        BrowserUtilities.wait(3);
         wait.until(ExpectedConditions.elementToBeClickable(saveAndClose)).click();
+        waitForLoaderMask();
     }
 
     public void navigateTo(String tabName, String moduleName){
@@ -56,6 +58,17 @@ public abstract class AbstractPageBase {
         actions.moveToElement(tabElement).pause(2000)
                 .click(moduleElement).build().perform();
 
+        //increase this wait rime if still failing
         BrowserUtilities.wait(4);
+        waitForLoaderMask();
+    }
+
+
+    /**
+     * this method can be used to wait until that terrible loader mask (spinning wheel) will be gone
+     * if loader mask is present, website is loading some data and you cannot perform any operations
+     */
+    public void waitForLoaderMask() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[class*='loader-mask']")));
     }
 }
